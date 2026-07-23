@@ -1,29 +1,111 @@
 # 🛒 ShopSphere Cloud Platform
 
-A production-ready cloud-native e-commerce platform built to demonstrate modern DevOps practices and cloud infrastructure automation.
+A production-grade cloud-native e-commerce platform built to demonstrate modern DevOps practices using Kubernetes, Docker, Terraform, Jenkins, Helm, AWS, Kafka, RabbitMQ, and PostgreSQL.
 
-> **Project Status:** 🚧 In Progress
+---
 
-## Objectives
+## 🎯 Project Goal
 
-- Build an end-to-end CI/CD pipeline
-- Deploy applications on AWS EKS
-- Automate infrastructure using Terraform
-- Package applications using Helm
-- Implement monitoring, logging, scaling, and security
-- Follow production-grade DevOps practices
+This project is designed to simulate a real-world microservices platform and showcase end-to-end DevOps practices including:
 
-## Tech Stack
+- Infrastructure as Code
+- Containerization
+- Kubernetes Orchestration
+- CI/CD Automation
+- API Gateway
+- Event-Driven Architecture
+- Monitoring & Logging
+- Production Deployment
 
-- FastAPI
-- React
+---
+
+# 🏗 Architecture
+
+Business Services
+
+- Frontend
+- User Service
+- Product Service
+- Cart Service
+- Order Service
+- Inventory Service
+- Notification Service
+- Analytics Service
+
+Platform Services
+
+- Kong API Gateway
+- PostgreSQL
+- RabbitMQ
+- Kafka
+- Redis
+
+---
+
+# 🛠 Tech Stack
+
+## Cloud
+
+- AWS
+
+## Containerization
+
 - Docker
+
+## Orchestration
+
 - Kubernetes
 - Helm
+
+## Infrastructure
+
 - Terraform
+
+## CI/CD
+
+- GitHub
 - Jenkins
-- AWS
+
+## Messaging
+
+- RabbitMQ
+- Kafka
+
+## Database
+
 - PostgreSQL
+
+## Monitoring
+
 - Prometheus
 - Grafana
 - Loki
+- Alertmanager
+
+---
+
+# 📂 Repository Structure
+
+```text
+app/
+platform/
+infrastructure/
+kubernetes/
+helm/
+monitoring/
+docs/
+diagrams/
+ci/
+```
+
+---
+
+## 🚀 Project Status
+
+Current Phase:
+
+**Architecture & Repository Design**
+
+Next Phase:
+
+**Dockerization**
