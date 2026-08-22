@@ -4,52 +4,50 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Checkout completed'
+                checkout scm
             }
         }
 
-        stage('Build') {
+        stage('Build Frontend Image') {
             steps {
-                echo 'Build stage'
+                sh '''
+                  docker build \
+                    -t shopsphere-frontend:${BUILD_NUMBER} \
+                    ./app/frontend
+                '''
             }
         }
 
-        stage('Test') {
+        stage('Build User Service Image') {
             steps {
-                echo 'Test stage'
+                sh '''
+                  docker build \
+                    -t shopsphere-user-service:${BUILD_NUMBER} \
+                    ./app/user-service
+                '''
             }
         }
 
-        stage('Docker Build') {
+        stage('Verify Images') {
             steps {
-                echo 'Docker build stage'
-            }
-        }
-
-        stage('Push to ECR') {
-            steps {
-                echo 'Push to ECR stage'
-            }
-        }
-
-        stage('Deploy to EKS') {
-            steps {
-                echo 'Deploy to EKS stage'
+                sh '''
+                  docker images | grep shopsphere
+                '''
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline successful'
+            echo 'Docker images built successfully.'
         }
 
         failure {
-            echo 'Pipeline failed'
+            echo 'Docker build failed.'
         }
 
         always {
-            echo 'Pipeline completed'
+            echo 'Pipeline completed.'
         }
     }
 }
