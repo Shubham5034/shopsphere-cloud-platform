@@ -1,0 +1,83 @@
+# ==========================================
+# ShopSphere Helm Values
+# ==========================================
+
+# ------------------------------------------
+# Frontend
+# ------------------------------------------
+
+frontend:
+  replicaCount: 2
+
+  image:
+    repository: <AWS_ACCOUNT_ID>.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/frontend
+    tag: latest
+    pullPolicy: Always
+
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 5173
+
+
+# ------------------------------------------
+# User Service
+# ------------------------------------------
+
+userService:
+  replicaCount: 2
+
+  image:
+    repository: <AWS_ACCOUNT_ID>.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/user-service
+    tag: latest
+    pullPolicy: Always
+
+  service:
+    type: ClusterIP
+    port: 8000
+    targetPort: 8000
+
+
+# ------------------------------------------
+# PostgreSQL
+# ------------------------------------------
+
+postgres:
+  image:
+    repository: postgres
+    tag: "17"
+    pullPolicy: IfNotPresent
+
+  service:
+    port: 5432
+
+  storage:
+    size: 2Gi
+
+
+# ------------------------------------------
+# Database Configuration
+# ------------------------------------------
+
+database:
+  host: postgres-service
+  port: "5432"
+  name: shopsphere
+  user: postgres
+  password: CHANGE_ME
+
+
+# ------------------------------------------
+# Ingress
+# ------------------------------------------
+
+ingress:
+  enabled: true
+
+  className: alb
+
+  host: shopsphere.local
+
+  path: /
+
+  pathType: Prefix
